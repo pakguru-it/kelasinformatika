@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="id"><head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"C","B":"20260730-05-6814160","C":{"Abril Fatface":"YACgEZbkUVE,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo":"YAHO2-t-jNE,0","Arial":"YAGyDvJ_4Ts,0","Bebas Neue":"YACgESME5ew,0","Broken Glyph":"YADZ-exUkv0,0","Canva Sans":"YAFdJjTk5UU,0","Caveat":"YALBs2ploWQ,0","Comic Sans MS":"YAHO2VMiyZo,0","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAEul-FRQw4,0","Georgia":"YAGzXkO0pEM,0","Ghost Mono":"YAHO2EIdDP0,0","Helvetica Neue":"YAFcf6CtJfI,0","Impact":"YAFcfnjI7Vk,0","Inter":"YAFdJvSyp_k,3","Iowan Old Style":"YAGNIFa8j9o,0","Jacques Francois":"YAHO2a5g66Q,0","JetBrains Mono":"YADy3sAhvXQ,0","Oleo Script":"YACgEQQ14jI,0","Playfair Display":"YAFdJhem5V8,1","Poppins":"YAE5fPSY9qM,0","Press Start 2P":"YAFyGr-8pmQ,0","Source Sans 3":"YAG4lO1Mj10,0","Space Grotesk":"YAHO2sjPCSM,0","Times New Roman":"YAGzXW3gftg,0","Times":"YAGzXW3gftg,0","Trebuchet MS":"YAFcfrglpVA,0","Verdana":"YAGzXTctYtQ,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0"}}');</script><script src="/_sdk/a27874207e105461.telemetry_sdk.js" integrity="sha512-wgI5N9F7oA2h3vH+benMYIv4wGqTct4nKWakqgvfgRyBLmfYq8q/fi6gkfWKd2hMsyN+VQ/qOAOpxybwkcoxlA=="></script>
+<html lang="id"><head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260730-05-6814160","C":{"Abril Fatface":"YACgEZbkUVE,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo":"YAHO2-t-jNE,0","Arial":"YAGyDvJ_4Ts,0","Bebas Neue":"YACgESME5ew,0","Broken Glyph":"YADZ-exUkv0,0","Canva Sans":"YAFdJjTk5UU,0","Caveat":"YALBs2ploWQ,0","Comic Sans MS":"YAHO2VMiyZo,0","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAEul-FRQw4,0","Georgia":"YAGzXkO0pEM,0","Ghost Mono":"YAHO2EIdDP0,0","Helvetica Neue":"YAFcf6CtJfI,0","Impact":"YAFcfnjI7Vk,0","Inter":"YAFdJvSyp_k,3","Iowan Old Style":"YAGNIFa8j9o,0","Jacques Francois":"YAHO2a5g66Q,0","JetBrains Mono":"YADy3sAhvXQ,0","Oleo Script":"YACgEQQ14jI,0","Playfair Display":"YAFdJhem5V8,1","Poppins":"YAE5fPSY9qM,0","Press Start 2P":"YAFyGr-8pmQ,0","Source Sans 3":"YAG4lO1Mj10,0","Space Grotesk":"YAHO2sjPCSM,0","Times New Roman":"YAGzXW3gftg,0","Times":"YAGzXW3gftg,0","Trebuchet MS":"YAFcfrglpVA,0","Verdana":"YAGzXTctYtQ,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0"}}');</script><script src="/_sdk/a27874207e105461.telemetry_sdk.js" integrity="sha512-wgI5N9F7oA2h3vH+benMYIv4wGqTct4nKWakqgvfgRyBLmfYq8q/fi6gkfWKd2hMsyN+VQ/qOAOpxybwkcoxlA=="></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kelas Informatika</title>
@@ -669,6 +669,28 @@
      <p class="text-xs text-gray-500 dark:text-gray-400">Pilih kelas terlebih dahulu, lalu checklist satu atau beberapa siswa.</p>
      <div class="flex gap-2 pt-2">
       <button type="submit" class="flex-1 py-2 bg-primary text-white rounded-lg font-medium hover:bg-blue-700 transition text-sm">Simpan</button><button type="button" onclick="closeModal('modal-anak-wali')" class="flex-1 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-white rounded-lg font-medium hover:bg-gray-300 transition text-sm">Batal</button>
+     </div>
+    </form>
+   </div>
+  </div><!-- Keaktifan Edit Modal -->
+  <div id="modal-keaktifan" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4">
+   <div class="absolute inset-0 bg-black/50" onclick="closeModal('modal-keaktifan')"></div>
+   <div class="relative bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-sm p-6 fade-in">
+    <div class="flex items-center gap-3 mb-5">
+     <div class="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center"><i class="bi bi-activity text-primary"></i>
+     </div>
+     <div>
+      <h3 class="text-lg font-bold text-gray-800 dark:text-white">Edit Keaktifan Siswa</h3>
+      <p id="keaktifan-modal-student" class="text-xs text-gray-500 dark:text-gray-400"></p>
+     </div>
+    </div>
+    <form id="form-keaktifan" class="space-y-4">
+     <input type="hidden" id="keaktifan-student-id">
+     <div><label for="keaktifan-status" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Status</label><select id="keaktifan-status" required="" class="w-full px-3 py-2.5 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-800 dark:text-white outline-none focus:ring-2 focus:ring-primary"><option value="supreme">Supreme</option><option value="average">Average</option><option value="excellent">Excellent</option></select>
+     </div>
+     <div><label for="keaktifan-catatan" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Catatan</label><textarea id="keaktifan-catatan" rows="3" class="w-full px-3 py-2.5 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-800 dark:text-white outline-none focus:ring-2 focus:ring-primary resize-none"></textarea>
+     </div>
+     <div class="flex gap-2 pt-1"><button type="submit" class="flex-1 py-2.5 bg-primary text-white rounded-xl font-medium hover:bg-blue-700 transition text-sm">Simpan</button><button type="button" onclick="closeModal('modal-keaktifan')" class="flex-1 py-2.5 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-white rounded-xl font-medium hover:bg-gray-300 transition text-sm">Batal</button>
      </div>
     </form>
    </div>
@@ -1966,11 +1988,67 @@ function renderKeaktifan() {
     const active = getData('keaktifan');
     const tbody = document.getElementById('keaktifan-tbody');
     if (!tbody) return;
-    tbody.innerHTML = students.length ? students.map(s => { const a = active.find(x => x.siswaId === s.id) || { status: 'supreme', catatan: '' }; const color = a.status === 'excellent' ? '#10B981' : a.status === 'average' ? '#C4A482' : '#9CA3AF'; return `<tr><td class="px-4 py-3 text-center"><select aria-label="Status keaktifan" onchange="saveKeaktifan('${s.id}',this.value)" class="w-3.5 h-3.5 rounded-full border-0 appearance-none cursor-pointer" style="background-color:${color}"><option value="supreme" ${a.status==='supreme'?'selected':''}>●</option><option value="average" ${a.status==='average'?'selected':''}>●</option><option value="excellent" ${a.status==='excellent'?'selected':''}>●</option></select></td><td class="px-4 py-3">${s.kelas}</td><td class="px-4 py-3 font-medium">${s.absen ? s.absen + '. ' : ''}${s.nama} (${s.panggilan})</td><td class="px-4 py-3"><input value="${a.catatan || ''}" onchange="saveKeaktifan('${s.id}',null,this.value)" class="w-full px-2 py-1 border rounded-lg" placeholder="Catatan"></td><td class="px-4 py-3 text-center"><button onclick="editKeaktifan('${s.id}')" class="text-primary hover:text-blue-700 mr-2"><i class="bi bi-pencil-square"></i></button><button onclick="deleteKeaktifan('${s.id}')" class="text-red-500 hover:text-red-700"><i class="bi bi-trash"></i></button></td></tr>`; }).join('') : '<tr><td colspan="4" class="px-4 py-8 text-center text-gray-400">Belum ada data siswa.</td></tr>';
+    tbody.innerHTML = students.length ? students.map(s => { const a = active.find(x => x.siswaId === s.id) || { status: 'supreme', catatan: '' }; const color = a.status === 'excellent' ? '#10B981' : a.status === 'average' ? '#C4A482' : '#9CA3AF'; return `<tr data-keaktifan-id="${s.id}"><td class="px-4 py-3 text-center"><span aria-label="Status keaktifan: ${a.status || 'supreme'}" class="inline-block w-3.5 h-3.5 rounded-full" style="background-color:${color}"></span></td><td class="px-4 py-3">${s.kelas}</td><td class="px-4 py-3 font-medium">${s.absen ? s.absen + '. ' : ''}${s.nama} (${s.panggilan})</td><td class="px-4 py-3"><input value="${a.catatan || ''}" onchange="saveKeaktifan('${s.id}',null,this.value)" class="w-full px-2 py-1 border rounded-lg" placeholder="Catatan"></td><td class="px-4 py-3 text-center"><button onclick="editKeaktifan('${s.id}')" class="text-primary hover:text-blue-700 mr-2"><i class="bi bi-pencil-square"></i></button><button onclick="deleteKeaktifan('${s.id}')" class="text-red-500 hover:text-red-700"><i class="bi bi-trash"></i></button></td></tr>`; }).join('') : '<tr><td colspan="4" class="px-4 py-8 text-center text-gray-400">Belum ada data siswa.</td></tr>';
 }
-function editKeaktifan(id) { const row = getData('keaktifan').find(x => x.siswaId === id); if (row) showToast('Silakan ubah status atau catatan pada baris siswa.', 'info'); }
+function openKeaktifanEditModal(id) {
+    const student = getData('siswa').find(s => s.id === id);
+    const active = getData('keaktifan').find(x => x.siswaId === id) || { status: 'supreme', catatan: '' };
+    if (!student) return;
+    document.getElementById('keaktifan-student-id').value = id;
+    document.getElementById('keaktifan-modal-student').textContent = `${student.absen ? student.absen + '. ' : ''}${student.nama} (${student.panggilan})`;
+    document.getElementById('keaktifan-status').value = active.status || 'supreme';
+    document.getElementById('keaktifan-catatan').value = active.catatan || '';
+    document.getElementById('modal-keaktifan').classList.remove('hidden');
+}
+document.getElementById('form-keaktifan').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const id = document.getElementById('keaktifan-student-id').value;
+    saveKeaktifan(id, document.getElementById('keaktifan-status').value, document.getElementById('keaktifan-catatan').value.trim());
+    closeModal('modal-keaktifan');
+    showToast('Data keaktifan berhasil diperbarui!');
+});
+
+function editKeaktifan(id) {
+    openKeaktifanEditModal(id);
+    return;
+    const data = getData('siswa');
+    const student = data.find(s => s.id === id);
+    const active = getData('keaktifan').find(x => x.siswaId === id) || { status: 'supreme', catatan: '' };
+    const row = document.querySelector(`tr[data-keaktifan-id="${id}"]`);
+    if (!student || !row) return;
+
+    const statusLabel = { supreme: 'Supreme', average: 'Average', excellent: 'Excellent' };
+    row.children[0].innerHTML = `<select id="edit-keaktifan-status-${id}" aria-label="Status keaktifan" class="px-2 py-1 text-xs rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-700 dark:text-white" onchange="this.style.borderColor=this.value==='excellent'?'#10B981':this.value==='average'?'#C4A482':'#9CA3AF'"><option value="supreme" ${active.status === 'supreme' ? 'selected' : ''}>${statusLabel.supreme}</option><option value="average" ${active.status === 'average' ? 'selected' : ''}>${statusLabel.average}</option><option value="excellent" ${active.status === 'excellent' ? 'selected' : ''}>${statusLabel.excellent}</option></select>`;
+    row.children[3].innerHTML = `<input id="edit-keaktifan-catatan-${id}" type="text" value="${(active.catatan || '').replace(/"/g, '&quot;')}" aria-label="Catatan keaktifan" class="w-full px-2 py-1 border rounded-lg">`;
+    row.children[4].innerHTML = `<button onclick="saveEditedKeaktifan('${id}')" class="text-accent hover:text-green-700 mr-2" title="Simpan"><i class="bi bi-check-lg"></i></button><button onclick="renderKeaktifan()" class="text-gray-500 hover:text-gray-700" title="Batal"><i class="bi bi-x-lg"></i></button>`;
+    document.getElementById(`edit-keaktifan-catatan-${id}`).focus();
+}
+function saveEditedKeaktifan(id) {
+    const status = document.getElementById(`edit-keaktifan-status-${id}`)?.value || 'supreme';
+    const catatan = document.getElementById(`edit-keaktifan-catatan-${id}`)?.value.trim() || '';
+    saveKeaktifan(id, status, catatan);
+    showToast('Data keaktifan berhasil diperbarui!');
+}
 function deleteKeaktifan(id) { setData('keaktifan', getData('keaktifan').filter(x => x.siswaId !== id)); renderKeaktifan(); showToast('Data keaktifan berhasil dihapus!'); }
-function saveKeaktifan(id, status, catatan) { const data = getData('keaktifan'); const i = data.findIndex(x => x.siswaId === id); const old = i > -1 ? data[i] : { siswaId: id, status: 'supreme', catatan: '' }; if (status) old.status = status; if (catatan !== undefined) old.catatan = catatan; if (i > -1) data[i] = old; else data.push(old); setData('keaktifan', data); renderKeaktifan(); }
+function saveKeaktifan(id, status, catatan) {
+    const data = getData('keaktifan');
+    const i = data.findIndex(x => x.siswaId === id);
+    const old = i > -1 ? data[i] : { siswaId: id, status: 'supreme', catatan: '' };
+    if (status) old.status = status;
+    if (catatan !== undefined) old.catatan = catatan;
+    if (i > -1) data[i] = old; else data.push(old);
+    setData('keaktifan', data);
+
+    // Keep the matching practical-work status in sync for the current student.
+    const siswa = getData('siswa').find(s => s.id === id);
+    if (siswa && status) {
+        const praktikum = getData('praktikum');
+        const updated = praktikum.map(p => p.nama === siswa.nama && p.kelas === siswa.kelas ? { ...p, status } : p);
+        setData('praktikum', updated);
+    }
+    renderKeaktifan();
+    if (document.getElementById('page-praktikum') && !document.getElementById('page-praktikum').classList.contains('hidden')) renderPraktikum();
+}
 
 // ===================== KELAS MENU FUNCTIONS =====================
 function renderKelas() {

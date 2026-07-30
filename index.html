@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="id"><head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260730-03-db92621","C":{"Abril Fatface":"YACgEZbkUVE,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo":"YAHO2-t-jNE,0","Arial":"YAGyDvJ_4Ts,0","Bebas Neue":"YACgESME5ew,0","Broken Glyph":"YADZ-exUkv0,0","Canva Sans":"YAFdJjTk5UU,0","Caveat":"YALBs2ploWQ,0","Comic Sans MS":"YAHO2VMiyZo,0","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAEul-FRQw4,0","Georgia":"YAGzXkO0pEM,0","Ghost Mono":"YAHO2EIdDP0,0","Helvetica Neue":"YAFcf6CtJfI,0","Impact":"YAFcfnjI7Vk,0","Inter":"YAFdJvSyp_k,3","Iowan Old Style":"YAGNIFa8j9o,0","Jacques Francois":"YAHO2a5g66Q,0","JetBrains Mono":"YADy3sAhvXQ,0","Oleo Script":"YACgEQQ14jI,0","Playfair Display":"YAFdJhem5V8,1","Poppins":"YAE5fPSY9qM,0","Press Start 2P":"YAFyGr-8pmQ,0","Source Sans 3":"YAG4lO1Mj10,0","Space Grotesk":"YAHO2sjPCSM,0","Times New Roman":"YAGzXW3gftg,0","Times":"YAGzXW3gftg,0","Trebuchet MS":"YAFcfrglpVA,0","Verdana":"YAGzXTctYtQ,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0"}}');</script><script src="/_sdk/a27874207e105461.telemetry_sdk.js" integrity="sha512-wgI5N9F7oA2h3vH+benMYIv4wGqTct4nKWakqgvfgRyBLmfYq8q/fi6gkfWKd2hMsyN+VQ/qOAOpxybwkcoxlA=="></script>
+<html lang="id"><head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"C","B":"20260730-05-6814160","C":{"Abril Fatface":"YACgEZbkUVE,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo":"YAHO2-t-jNE,0","Arial":"YAGyDvJ_4Ts,0","Bebas Neue":"YACgESME5ew,0","Broken Glyph":"YADZ-exUkv0,0","Canva Sans":"YAFdJjTk5UU,0","Caveat":"YALBs2ploWQ,0","Comic Sans MS":"YAHO2VMiyZo,0","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAEul-FRQw4,0","Georgia":"YAGzXkO0pEM,0","Ghost Mono":"YAHO2EIdDP0,0","Helvetica Neue":"YAFcf6CtJfI,0","Impact":"YAFcfnjI7Vk,0","Inter":"YAFdJvSyp_k,3","Iowan Old Style":"YAGNIFa8j9o,0","Jacques Francois":"YAHO2a5g66Q,0","JetBrains Mono":"YADy3sAhvXQ,0","Oleo Script":"YACgEQQ14jI,0","Playfair Display":"YAFdJhem5V8,1","Poppins":"YAE5fPSY9qM,0","Press Start 2P":"YAFyGr-8pmQ,0","Source Sans 3":"YAG4lO1Mj10,0","Space Grotesk":"YAHO2sjPCSM,0","Times New Roman":"YAGzXW3gftg,0","Times":"YAGzXW3gftg,0","Trebuchet MS":"YAFcfrglpVA,0","Verdana":"YAGzXTctYtQ,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0"}}');</script><script src="/_sdk/a27874207e105461.telemetry_sdk.js" integrity="sha512-wgI5N9F7oA2h3vH+benMYIv4wGqTct4nKWakqgvfgRyBLmfYq8q/fi6gkfWKd2hMsyN+VQ/qOAOpxybwkcoxlA=="></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kelas Informatika</title>
@@ -90,7 +90,7 @@
       </div>
       <div>
        <h2 data-template-id="app-title" class="canva-text font-bold text-gray-800 dark:text-white text-sm" style="color: rgb(30, 41, 59); font-weight: 700; font-style: normal; font-size: 14px;">Kelas Informatika</h2>
-       <p class="text-xs text-gray-500 dark:text-gray-400">v27.5</p>
+       <p class="text-xs text-gray-500 dark:text-gray-400" id="app-version">v27.6</p>
       </div>
      </div>
     </div>
@@ -261,7 +261,7 @@
       <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
        <h1 class="text-2xl font-bold text-gray-800 dark:text-white">Absensi Siswa</h1>
        <div class="flex gap-2 flex-wrap">
-        <button onclick="openBatchAbsensiModal()" class="px-4 py-2 bg-indigo-600 text-white rounded-xl text-sm font-medium hover:bg-indigo-700 transition"><i class="bi bi-calendar2-plus"></i> Absen Kelas</button> <button onclick="openAbsensiModal()" class="px-4 py-2 bg-primary text-white rounded-xl text-sm font-medium hover:bg-blue-700 transition"><i class="bi bi-plus-lg"></i> Tambah</button> <button onclick="document.getElementById('import-absensi').click()" class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-white rounded-xl text-sm font-medium hover:bg-gray-300 transition"><i class="bi bi-upload"></i> Import</button> <input id="import-absensi" type="file" accept=".xlsx,.xls,.csv" class="hidden" onchange="importAbsensi(event)"> <button onclick="exportAbsensi()" class="px-4 py-2 bg-accent text-white rounded-xl text-sm font-medium hover:bg-green-600 transition"><i class="bi bi-download"></i> Export</button>
+        <button onclick="openBatchAbsensiModal()" class="px-4 py-2 bg-indigo-600 text-white rounded-xl text-sm font-medium hover:bg-indigo-700 transition"><i class="bi bi-calendar2-plus"></i> Absen Kelas</button> <button onclick="openAbsensiModal()" class="px-4 py-2 bg-primary text-white rounded-xl text-sm font-medium hover:bg-blue-700 transition"><i class="bi bi-plus-lg"></i> Tambah</button> <button onclick="document.getElementById('import-absensi').click()" class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-white rounded-xl text-sm font-medium hover:bg-gray-300 transition"><i class="bi bi-upload"></i> Import</button> <input id="import-absensi" type="file" accept=".xlsx,.xls,.csv" class="hidden" onchange="importAbsensi(event)"> <button onclick="exportAbsensi()" class="px-4 py-2 bg-accent text-white rounded-xl text-sm font-medium hover:bg-green-600 transition"><i class="bi bi-download"></i> Export</button> <button onclick="resetAbsensi()" class="px-4 py-2 bg-gray-500 text-white rounded-xl text-sm font-medium hover:bg-gray-600 transition"><i class="bi bi-arrow-counterclockwise"></i> Reset</button>
        </div>
       </div>
       <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
@@ -449,7 +449,7 @@
       <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
        <h1 class="text-2xl font-bold text-gray-800 dark:text-white">Jurnal Mengajar</h1>
        <div class="flex gap-2 flex-wrap">
-        <button onclick="openJurnalModal()" class="px-4 py-2 bg-primary text-white rounded-xl text-sm font-medium hover:bg-blue-700 transition"><i class="bi bi-plus-lg"></i> Tambah</button> <button onclick="sortJurnalByDate()" class="px-4 py-2 bg-indigo-600 text-white rounded-xl text-sm font-medium hover:bg-indigo-700 transition"><i class="bi bi-sort-down"></i> Urutkan Sesuai Tanggal</button> <button onclick="document.getElementById('import-jurnal').click()" class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-white rounded-xl text-sm font-medium hover:bg-gray-300 transition"><i class="bi bi-upload"></i> Import</button> <input id="import-jurnal" type="file" accept=".xlsx,.xls,.csv" class="hidden" onchange="importJurnal(event)"> <button onclick="exportJurnal()" class="px-4 py-2 bg-accent text-white rounded-xl text-sm font-medium hover:bg-green-600 transition"><i class="bi bi-download"></i> Export</button>
+        <button onclick="openJurnalModal()" class="px-4 py-2 bg-primary text-white rounded-xl text-sm font-medium hover:bg-blue-700 transition"><i class="bi bi-plus-lg"></i> Tambah</button> <button onclick="sortJurnalByDate()" class="px-4 py-2 bg-indigo-600 text-white rounded-xl text-sm font-medium hover:bg-indigo-700 transition"><i class="bi bi-sort-down"></i> Urutkan Sesuai Tanggal</button> <button onclick="document.getElementById('import-jurnal').click()" class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-white rounded-xl text-sm font-medium hover:bg-gray-300 transition"><i class="bi bi-upload"></i> Import</button> <input id="import-jurnal" type="file" accept=".xlsx,.xls,.csv" class="hidden" onchange="importJurnal(event)"> <button onclick="exportJurnal()" class="px-4 py-2 bg-accent text-white rounded-xl text-sm font-medium hover:bg-green-600 transition"><i class="bi bi-download"></i> Export</button> <button onclick="resetJurnal()" class="px-4 py-2 bg-gray-500 text-white rounded-xl text-sm font-medium hover:bg-gray-600 transition"><i class="bi bi-arrow-counterclockwise"></i> Reset</button>
        </div>
       </div>
       <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
@@ -662,8 +662,11 @@
    <div class="absolute inset-0 bg-black/50" onclick="closeModal('modal-anak-wali')"></div>
    <div class="relative bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-md p-6 fade-in">
     <h3 class="text-lg font-bold text-gray-800 dark:text-white mb-4">Tambah Anak Wali</h3>
-    <form id="form-anak-wali" class="space-y-3"><label for="anak-wali-kelas" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Pilih Kelas</label> <select id="anak-wali-kelas" required="" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white outline-none focus:ring-2 focus:ring-primary text-sm" onchange="populateAnakWaliStudents()"></select> <label for="anak-wali-siswa" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Pilih Siswa</label> <select id="anak-wali-siswa" required="" size="8" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white outline-none focus:ring-2 focus:ring-primary text-sm"></select>
-     <p class="text-xs text-gray-500 dark:text-gray-400">Pilih kelas terlebih dahulu, kemudian pilih satu siswa.</p>
+    <form id="form-anak-wali" class="space-y-3"><label for="anak-wali-kelas" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Pilih Kelas</label> <select id="anak-wali-kelas" required="" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white outline-none focus:ring-2 focus:ring-primary text-sm" onchange="populateAnakWaliStudents()"></select>
+     <fieldset><legend class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Pilih Siswa</legend>
+      <div id="anak-wali-siswa" class="space-y-2 max-h-52 overflow-y-auto p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700"></div>
+     </fieldset>
+     <p class="text-xs text-gray-500 dark:text-gray-400">Pilih kelas terlebih dahulu, lalu checklist satu atau beberapa siswa.</p>
      <div class="flex gap-2 pt-2">
       <button type="submit" class="flex-1 py-2 bg-primary text-white rounded-lg font-medium hover:bg-blue-700 transition text-sm">Simpan</button><button type="button" onclick="closeModal('modal-anak-wali')" class="flex-1 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-white rounded-lg font-medium hover:bg-gray-300 transition text-sm">Batal</button>
      </div>
@@ -709,6 +712,8 @@
     <h3 class="text-lg font-bold text-gray-800 dark:text-white mb-4">Ubah Profil</h3>
     <form id="form-profil" class="space-y-3">
      <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nama Panggilan</label><input id="profil-nama" type="text" required="" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white outline-none focus:ring-2 focus:ring-primary text-sm">
+     </div>
+     <div><label for="profil-versi" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Versi Aplikasi</label><input id="profil-versi" type="text" required="" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white outline-none focus:ring-2 focus:ring-primary text-sm" placeholder="Contoh: v27.6">
      </div>
      <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">URL Foto Profil</label><input id="profil-foto-url" type="text" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white outline-none focus:ring-2 focus:ring-primary text-sm" placeholder="Masukkan URL foto (https://...)">
      </div>
@@ -1690,7 +1695,12 @@ function initApp() {
         formProfil.addEventListener('submit', async function(e) {
             e.preventDefault();
             const nama = document.getElementById('profil-nama').value.trim();
+            const versi = document.getElementById('profil-versi').value.trim();
             const url = document.getElementById('profil-foto-url').value.trim();
+            if (versi) {
+                localStorage.setItem('app_version', versi);
+                document.getElementById('app-version').textContent = versi;
+            }
             const u = document.getElementById('profil-username').value.trim();
             const p = document.getElementById('profil-password').value.trim();
             
@@ -1929,7 +1939,7 @@ function populateAnakWaliStudents() {
     const select = document.getElementById('anak-wali-siswa');
     if (!select) return;
     const students = getData('siswa').filter(s => s.kelas === kelas).sort((a, b) => (parseInt(a.absen) || 999) - (parseInt(b.absen) || 999));
-    select.innerHTML = students.map(s => `<option value="${s.id}">${s.absen || '-'}. ${s.nama} (${s.panggilan})</option>`).join('') || '<option value="">Belum ada siswa di kelas ini</option>';
+    select.innerHTML = students.map(s => `<label class="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-200"><input type="checkbox" name="anak-wali-siswa-item" value="${s.id}" class="rounded border-gray-300 text-primary focus:ring-primary"><span>${s.absen || '-'}. ${s.nama} (${s.panggilan})</span></label>`).join('') || '<span class="text-sm text-gray-400">Belum ada siswa di kelas ini</span>';
 }
 function openAnakWaliModal() {
     const kelasSelect = document.getElementById('anak-wali-kelas');
@@ -1944,7 +1954,9 @@ function deleteAnakWali(id) { setData('anak_wali', getData('anak_wali').filter(s
 function resetAnakWali() { showConfirm('Reset Anak Wali', 'Hapus seluruh data anak wali?', () => { setData('anak_wali', []); renderAnakWali(); showToast('Data Anak Wali berhasil di-reset!'); }); }
 function exportAnakWali() { exportXLSX(getData('anak_wali').map(s => ({ 'No. Absen': s.absen || '', 'Nama Lengkap': s.nama, Panggilan: s.panggilan, Kelas: s.kelas, Catatan: s.catatan || '' })), 'Anak_Wali'); }
 function importAnakWali(e) { const file = e.target.files[0]; if (!file) return; const reader = new FileReader(); reader.onload = ev => { try { const wb = XLSX.read(ev.target.result, { type: 'binary' }); const rows = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]); const data = getData('anak_wali'); rows.forEach(r => { const nama = r['Nama Lengkap'] || r.Nama || r.nama || ''; const s = getData('siswa').find(x => x.nama === nama); if (s && !data.some(x => x.siswaId === s.id)) data.push({ id: genId(), siswaId: s.id, absen: s.absen, nama: s.nama, panggilan: s.panggilan, kelas: s.kelas, catatan: r.Catatan || '' }); }); setData('anak_wali', data); renderAnakWali(); showToast('Data Anak Wali berhasil diimport!'); } catch { showToast('Gagal memproses file import!', 'error'); } }; reader.readAsBinaryString(file); e.target.value = ''; }
-document.getElementById('form-anak-wali').addEventListener('submit', function(e) { e.preventDefault(); const data = getData('anak_wali'); const selected = document.getElementById('anak-wali-siswa').value; const s = getData('siswa').find(x => x.id === selected); if (s && !data.some(x => x.siswaId === s.id)) data.push({ id: genId(), siswaId: s.id, absen: s.absen, nama: s.nama, panggilan: s.panggilan, kelas: s.kelas, catatan: '' }); setData('anak_wali', data); closeModal('modal-anak-wali'); renderAnakWali(); showToast('Data Anak Wali berhasil ditambahkan!'); });
+document.getElementById('form-anak-wali').addEventListener('submit', function(e) { e.preventDefault(); const data = getData('anak_wali'); const selected = [...document.querySelectorAll('input[name="anak-wali-siswa-item"]:checked')].map(input => input.value); const students = getData('siswa'); let added = 0; selected.forEach(id => { const s = students.find(x => x.id === id); if (s && !data.some(x => x.siswaId === s.id)) { data.push({ id: genId(), siswaId: s.id, absen: s.absen, nama: s.nama, panggilan: s.panggilan, kelas: s.kelas, catatan: '' }); added++; } }); setData('anak_wali', data); closeModal('modal-anak-wali'); renderAnakWali(); showToast(added ? `${added} data Anak Wali berhasil ditambahkan!` : 'Pilih minimal satu siswa terlebih dahulu.', added ? 'success' : 'info'); });
+function resetAbsensi() { showConfirm('Reset Absensi', 'Hapus seluruh data absensi pada semester dan filter saat ini?', () => { const sem = document.getElementById('filter-semester-absensi')?.value || 'Ganjil'; const data = getData('absensi').filter(a => (a.semester || 'Ganjil') !== sem); setData('absensi', data); renderAbsensi(); refreshDashboard(); showToast('Data Absensi pada semester ini berhasil di-reset!'); }); }
+function resetJurnal() { showConfirm('Reset Jurnal', 'Hapus seluruh data jurnal mengajar?', () => { setData('jurnal', []); renderJurnal(); refreshDashboard(); showToast('Data Jurnal berhasil di-reset!'); }); }
 function openKeaktifanModal() { showToast('Status keaktifan dikelola langsung pada tabel siswa.', 'info'); }
 function resetKeaktifan() { showConfirm('Reset Keaktifan', 'Hapus seluruh catatan keaktifan?', () => { setData('keaktifan', []); renderKeaktifan(); showToast('Data Keaktifan berhasil di-reset!'); }); }
 function exportKeaktifan() { exportXLSX(getData('siswa').map(s => { const a = getData('keaktifan').find(x => x.siswaId === s.id) || {}; return { Kelas: s.kelas, Nama: s.nama, Status: a.status || 'supreme', Catatan: a.catatan || '' }; }), 'Keaktifan_Siswa'); }
@@ -2102,6 +2114,7 @@ function importKelas(e) {
 // Profile Handling
 function openProfilModal() {
     document.getElementById('profil-nama').value = localStorage.getItem('admin_name') || 'Pak Jupi';
+    document.getElementById('profil-versi').value = localStorage.getItem('app_version') || 'v27.6';
     document.getElementById('profil-foto-url').value = localStorage.getItem('admin_avatar_url') || '';
     const creds = getCreds();
     document.getElementById('profil-username').value = creds.username;
@@ -2122,6 +2135,9 @@ function previewUploadFoto(e) {
 
 // Load profile on initialization helper
 function loadProfileOverride() {
+    const storedVersion = localStorage.getItem('app_version') || 'v27.6';
+    const versionEl = document.getElementById('app-version');
+    if (versionEl) versionEl.textContent = storedVersion;
     const storedName = localStorage.getItem('admin_name');
     if (storedName) {
         document.getElementById('current-admin-name').textContent = storedName;

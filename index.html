@@ -238,7 +238,7 @@
      <div id="page-absensi" class="page-content hidden fade-in">
       <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
        <h1 class="text-2xl font-bold text-gray-800 dark:text-white">Absensi Siswa</h1>
-       <div class="flex gap-2 flex-wrap"><button onclick="openBatchAbsensiModal()" class="px-4 py-2 bg-indigo-600 text-white rounded-xl text-sm font-medium hover:bg-indigo-700 transition"><i class="bi bi-calendar2-plus"></i> Absen Kelas</button> <button onclick="openAbsensiModal()" class="px-4 py-2 bg-primary text-white rounded-xl text-sm font-medium hover:bg-blue-700 transition"><i class="bi bi-plus-lg"></i> Tambah</button> <button onclick="document.getElementById('import-absensi').click()" class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-white rounded-xl text-sm font-medium hover:bg-gray-300 transition"><i class="bi bi-upload"></i> Import</button> <input id="import-absensi" type="file" accept=".xlsx,.xls,.csv" class="hidden" onchange="importAbsensi(event)"> <button onclick="exportAbsensi()" class="px-4 py-2 bg-accent text-white rounded-xl text-sm font-medium hover:bg-green-600 transition"><i class="bi bi-download"></i> Export</button> <button onclick="resetAbsensi()" class="px-4 py-2 bg-gray-500 text-white rounded-xl text-sm font-medium hover:bg-gray-600 transition"><i class="bi bi-arrow-counterclockwise"></i> Reset</button>
+       <div class="flex gap-2 flex-wrap"><button onclick="openBatchAbsensiModal()" class="px-4 py-2 bg-indigo-600 text-white rounded-xl text-sm font-medium hover:bg-indigo-700 transition"><i class="bi bi-calendar2-plus"></i> Absensi Kelas</button> <button onclick="document.getElementById('import-absensi').click()" class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-white rounded-xl text-sm font-medium hover:bg-gray-300 transition"><i class="bi bi-upload"></i> Import</button> <input id="import-absensi" type="file" accept=".xlsx,.xls,.csv" class="hidden" onchange="importAbsensi(event)"> <button onclick="exportAbsensi()" class="px-4 py-2 bg-accent text-white rounded-xl text-sm font-medium hover:bg-green-600 transition"><i class="bi bi-download"></i> Export</button> <button onclick="resetAbsensi()" class="px-4 py-2 bg-gray-500 text-white rounded-xl text-sm font-medium hover:bg-gray-600 transition"><i class="bi bi-arrow-counterclockwise"></i> Reset</button>
        </div>
       </div>
       <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
@@ -892,7 +892,7 @@
        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nilai Akhir</label> <input id="praktikum-nilai" type="number" min="0" max="100" readonly="" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-300 outline-none text-sm font-bold" placeholder="Dihitung otomatis">
       </div>
       <div>
-       <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Status</label> <select id="praktikum-status" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-800 dark:text-white outline-none focus:ring-2 focus:ring-primary text-sm"> <option value="supreme">Supreme</option> <option value="average">Average</option> <option value="excellent">Excellent</option> </select>
+       <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Status</label> <select id="praktikum-status" disabled="" title="Status otomatis mengikuti Keaktifan Siswa" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-100 dark:bg-gray-600 text-gray-500 dark:text-gray-400 outline-none text-sm cursor-not-allowed"> <option value="supreme">Supreme</option> <option value="average">Average</option> <option value="excellent">Excellent</option> </select>
       </div>
      </div>
      <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Nilai Praktikum 1 s.d. 20</label>
@@ -1872,6 +1872,25 @@ function initApp() {
             const jenjangKelas = document.getElementById('kelas-jenjang').value;
             const kelasSumber = document.getElementById('kelas-sumber').value;
             if (!namaKelas) return;
+            if (editingKelasName) {
+                const oldName = editingKelasName;
+                const allClasses = [...new Set([...getData('siswa').map(s => s.kelas), ...getData('custom_kelas')])];
+                if (namaKelas !== oldName && allClasses.includes(namaKelas)) {
+                    showToast('Nama kelas tersebut sudah digunakan.', 'error');
+                    return;
+                }
+                setData('custom_kelas', getData('custom_kelas').map(x => x === oldName ? namaKelas : x));
+                setData('siswa', getData('siswa').map(s => s.kelas === oldName ? { ...s, kelas: namaKelas } : s));
+                const renameKeys = key => setData(key, getData(key).map(item => item.kelas === oldName ? { ...item, kelas: namaKelas } : item));
+                ['absensi', 'nilai', 'praktikum', 'jadwal', 'jurnal', 'tugas'].forEach(renameKeys);
+                const jenjangMap = getData('kelas_jenjang');
+                if (jenjangMap && !Array.isArray(jenjangMap)) { jenjangMap[namaKelas] = jenjangKelas; delete jenjangMap[oldName]; setData('kelas_jenjang', jenjangMap); }
+                editingKelasName = null;
+                closeModal('modal-kelas');
+                renderKelas(); populateKelasFilters(); populateKelasSelects();
+                showToast('Nama kelas berhasil diperbarui!');
+                return;
+            }
             
             const customKelas = getData('custom_kelas');
             const jenjangMap = getData('kelas_jenjang');
@@ -2139,6 +2158,7 @@ function renderKelas() {
                     <h3 class="text-lg font-bold text-gray-800 dark:text-white">${k}</h3>
                     <div class="flex items-center gap-2">
                         <span class="px-2.5 py-1 bg-blue-100 dark:bg-blue-900/30 text-primary rounded-full text-xs font-semibold">${listSiswa.length} Siswa</span>
+                        <button onclick="editKelas('${k}')" class="p-1.5 text-primary hover:text-blue-700 hover:bg-blue-50 dark:hover:bg-blue-950/30 rounded-lg transition" title="Edit Kelas"><i class="bi bi-pencil-square"></i></button>
                         <button onclick="deleteKelas('${k}')" class="p-1.5 text-red-500 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-950/30 rounded-lg transition" title="Hapus Kelas"><i class="bi bi-trash"></i></button>
                     </div>
                 </div>
@@ -2164,6 +2184,16 @@ function viewClassStudents(k) {
     // on 'Tambah Siswa' modal trigger while viewing class details
     localStorage.setItem('active_viewing_class', k);
     renderSiswa();
+}
+
+let editingKelasName = null;
+function editKelas(k) {
+    editingKelasName = k;
+    document.getElementById('form-kelas').reset();
+    document.getElementById('kelas-nama').value = k;
+    document.getElementById('kelas-jenjang').value = getJenjangKelas(k) || 'Kelas X';
+    document.getElementById('kelas-sumber').value = '';
+    document.getElementById('modal-kelas').classList.remove('hidden');
 }
 
 function openKelasModal() {

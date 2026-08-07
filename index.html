@@ -1167,10 +1167,41 @@ const firebaseConfig = {
   appId: "1:376424936312:web:37fbdf237d301b948d8e8d"
 };
 
+// Dengarkan perubahan data secara real-time dari perangkat lain
+let refreshTimer = null;
+function scheduleUIRefresh() {
+    clearTimeout(refreshTimer);
+    refreshTimer = setTimeout(() => {
+        const appPage = document.getElementById('app-page');
+        if (appPage && !appPage.classList.contains('hidden')) {
+            showPage(currentPage);
+        }
+    }, 400);
+}
+
+function startRealtimeSync() {
+    if (!db || !cloudReady || realtimeUnsub) return;
+    realtimeUnsub = db.collection('app_data').onSnapshot(snapshot => {
+        let changed = false;
+        snapshot.docChanges().forEach(change => {
+            const key = change.doc.id;
+            if (!CLOUD_KEYS.includes(key)) return;
+            if (change.type === 'removed') return;
+            const val = change.doc.data().value || [];
+            dataCache[key] = val;
+            localStorage.setItem(key, JSON.stringify(val));
+            changed = true;
+        });
+        if (changed) scheduleUIRefresh();
+    }, err => console.error('Realtime sync error:', err));
+}
+
 // Kunci-kunci data yang akan disinkronkan ke cloud (data administrasi utama)
 const CLOUD_KEYS = ['siswa','absensi','nilai','jurnal','custom_kelas','mapel','materi','jam','jadwal','praktikum','tugas','keaktifan','anak_wali','tahun_ajaran','kelas_jenjang'];
 
 let fbApp = null, db = null, cloudUser = null, cloudReady = false;
+let currentPage = 'dashboard';
+let realtimeUnsub = null;
 const dataCache = {};
 
 try {
@@ -1278,6 +1309,7 @@ async function checkLogin() {
         await loadAllFromCloud();
         document.getElementById('cloud-sync-overlay').classList.add('hidden');
         initApp();
+        startRealtimeSync();
     }
 }
 
@@ -1305,6 +1337,7 @@ document.getElementById('login-form').addEventListener('submit', async function(
         document.getElementById('cloud-sync-overlay').classList.add('hidden');
         showToast('Login berhasil!', 'success');
         initApp();
+        startRealtimeSync();
     } else {
         document.getElementById('login-error').classList.remove('hidden');
     }
@@ -2137,6 +2170,7 @@ function updateDateIndo() {
 
 // ===================== NAVIGATION =====================
 function showPage(page) {
+    currentPage = page;
     document.querySelectorAll('.page-content').forEach(p => p.classList.add('hidden'));
     document.getElementById('page-' + page).classList.remove('hidden');
     document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));

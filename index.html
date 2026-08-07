@@ -1187,9 +1187,15 @@ function startRealtimeSync() {
             const key = change.doc.id;
             if (!CLOUD_KEYS.includes(key)) return;
             if (change.type === 'removed') return;
+            // Ada proses simpan lokal yang masih berjalan untuk key ini -> jangan timpa cache dulu,
+            // supaya data yang baru diinput tidak tertimpa versi lama
+            if (pendingWrites[key] > 0) return;
             const val = change.doc.data().value || [];
+            const newStr = JSON.stringify(val);
+            // Isi sama persis dengan cache saat ini -> ini cuma echo konfirmasi server, abaikan
+            if (newStr === JSON.stringify(dataCache[key] || [])) return;
             dataCache[key] = val;
-            localStorage.setItem(key, JSON.stringify(val));
+            localStorage.setItem(key, newStr);
             changed = true;
         });
         if (changed) scheduleUIRefresh();
@@ -1253,8 +1259,10 @@ async function loadAllFromCloud() {
 }
 
 // Kirim satu key data ke Firestore (dipanggil setiap kali setData dipanggil)
+const pendingWrites = {}; // key -> jumlah proses simpan yang sedang berjalan untuk key ini
 async function syncToCloud(key, data) {
     if (!db || !CLOUD_KEYS.includes(key)) return;
+    pendingWrites[key] = (pendingWrites[key] || 0) + 1;
     try {
         await ensureCloudAuth();
         if (!cloudReady) return;
@@ -1266,6 +1274,8 @@ async function syncToCloud(key, data) {
     } catch (e) {
         console.error('Gagal sinkron ke cloud untuk key "' + key + '":', e);
         showToast('Gagal sinkron ke cloud, data tersimpan lokal saja', 'error');
+    } finally {
+        pendingWrites[key] = Math.max(0, (pendingWrites[key] || 1) - 1);
     }
 }
 

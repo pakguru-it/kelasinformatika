@@ -9,6 +9,9 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
   <script>
         tailwind.config = {
             darkMode: 'class',
@@ -49,7 +52,11 @@
   <script src="/_sdk/04cc6185e046f597.resizing_sdk.js" type="text/javascript" integrity="sha512-CiE/G92aQF0nxneFg1kdOvXih8sQ1Z2a2QI3+r/WvzJwQqH6+IyB3iL07OkJmpm3ABAaf07+FnqWny98f5sR6w=="></script>
  </head>
  <body data-template-id="__page-root" class="min-h-screen bg-surface dark:bg-gray-900 transition-colors" style="background: rgb(248, 250, 252);"><!-- Toast Container -->
-  <div id="toast-container" class="fixed top-4 right-4 z-[9999] space-y-2"></div><!-- LOGIN PAGE -->
+  <div id="toast-container" class="fixed top-4 right-4 z-[9999] space-y-2"></div>
+  <div id="cloud-sync-overlay" class="hidden fixed inset-0 bg-white/90 dark:bg-gray-900/90 z-[10000] flex flex-col items-center justify-center gap-3">
+   <span class="spinner"></span>
+   <p class="text-sm text-gray-600 dark:text-gray-300">Menyinkronkan data...</p>
+  </div><!-- LOGIN PAGE -->
   <div id="login-page" class="min-h-screen flex items-center justify-center p-4">
    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8 w-full max-w-md fade-in">
     <div class="text-center mb-8">
@@ -1150,9 +1157,96 @@ function syncGlobalSettingsToUI() {
     if (filterSemKeaktifan) filterSemKeaktifan.value = sem;
 }
 
-// ===================== DATA STORAGE =====================
-function getData(key) { return JSON.parse(localStorage.getItem(key) || '[]'); }
-function setData(key, data) { localStorage.setItem(key, JSON.stringify(data)); }
+// ===================== DATA STORAGE (Firebase + localStorage) =====================
+const firebaseConfig = {
+  apiKey: "AIzaSyB7uYbAxRbJUuJa6Gh3sUtv5S-U30njEaU",
+  authDomain: "kelas-informatika-96a20.firebaseapp.com",
+  projectId: "kelas-informatika-96a20",
+  storageBucket: "kelas-informatika-96a20.firebasestorage.app",
+  messagingSenderId: "376424936312",
+  appId: "1:376424936312:web:37fbdf237d301b948d8e8d"
+};
+
+// Kunci-kunci data yang akan disinkronkan ke cloud (data administrasi utama)
+const CLOUD_KEYS = ['siswa','absensi','nilai','jurnal','custom_kelas','mapel','materi','jam','jadwal','praktikum','tugas','keaktifan','anak_wali','tahun_ajaran','kelas_jenjang'];
+
+let fbApp = null, db = null, cloudUser = null, cloudReady = false;
+const dataCache = {};
+
+try {
+    fbApp = firebase.initializeApp(firebaseConfig);
+    db = firebase.firestore();
+} catch (e) { console.error('Firebase init gagal:', e); }
+
+// Login anonim ke Firebase supaya Firestore rules bisa memverifikasi request.auth
+async function ensureCloudAuth() {
+    if (!db) return false;
+    try {
+        if (!firebase.auth().currentUser) {
+            await firebase.auth().signInAnonymously();
+        }
+        cloudUser = firebase.auth().currentUser;
+        cloudReady = true;
+        return true;
+    } catch (e) {
+        console.error('Firebase auth gagal, fallback ke localStorage saja:', e);
+        cloudReady = false;
+        return false;
+    }
+}
+
+// Ambil semua data dari Firestore ke cache (dipanggil setelah login, sebelum initApp)
+async function loadAllFromCloud() {
+    // Muat dulu dari localStorage supaya app tetap bisa jalan walau offline/gagal
+    CLOUD_KEYS.forEach(key => { dataCache[key] = JSON.parse(localStorage.getItem(key) || '[]'); });
+
+    const ok = await ensureCloudAuth();
+    if (!ok) return;
+
+    try {
+        const snapshot = await db.collection('app_data').get();
+        const remoteKeys = new Set();
+        snapshot.forEach(doc => {
+            remoteKeys.add(doc.id);
+            const val = doc.data().value || [];
+            dataCache[doc.id] = val;
+            localStorage.setItem(doc.id, JSON.stringify(val));
+        });
+        // Kalau ada data lokal yang belum pernah ke-upload (dokumen belum ada di cloud), upload sekarang
+        const uploads = CLOUD_KEYS.filter(key => !remoteKeys.has(key) && dataCache[key] && dataCache[key].length > 0)
+            .map(key => syncToCloud(key, dataCache[key]));
+        await Promise.all(uploads);
+    } catch (e) {
+        console.error('Gagal memuat data dari cloud, memakai data lokal:', e);
+    }
+}
+
+// Kirim satu key data ke Firestore (dipanggil setiap kali setData dipanggil)
+async function syncToCloud(key, data) {
+    if (!db || !CLOUD_KEYS.includes(key)) return;
+    try {
+        await ensureCloudAuth();
+        if (!cloudReady) return;
+        await db.collection('app_data').doc(key).set({
+            value: data,
+            updated_at: firebase.firestore.FieldValue.serverTimestamp(),
+            updated_by: cloudUser ? cloudUser.uid : null
+        });
+    } catch (e) {
+        console.error('Gagal sinkron ke cloud untuk key "' + key + '":', e);
+        showToast('Gagal sinkron ke cloud, data tersimpan lokal saja', 'error');
+    }
+}
+
+function getData(key) {
+    if (Object.prototype.hasOwnProperty.call(dataCache, key)) return dataCache[key];
+    return JSON.parse(localStorage.getItem(key) || '[]');
+}
+function setData(key, data) {
+    dataCache[key] = data;
+    localStorage.setItem(key, JSON.stringify(data));
+    syncToCloud(key, data);
+}
 function genId() { return Date.now().toString(36) + Math.random().toString(36).substr(2, 5); }
 
 // ===================== LOGIN =====================
@@ -1176,10 +1270,13 @@ function setCreds(username, passwordHash) {
     localStorage.setItem('login_creds', JSON.stringify({ username, password: passwordHash, is_hashed: true }));
 }
 
-function checkLogin() {
+async function checkLogin() {
     if (localStorage.getItem('logged_in') === 'true') {
         document.getElementById('login-page').classList.add('hidden');
         document.getElementById('app-page').classList.remove('hidden');
+        document.getElementById('cloud-sync-overlay').classList.remove('hidden');
+        await loadAllFromCloud();
+        document.getElementById('cloud-sync-overlay').classList.add('hidden');
         initApp();
     }
 }
@@ -1203,6 +1300,9 @@ document.getElementById('login-form').addEventListener('submit', async function(
         document.getElementById('login-error').classList.add('hidden');
         document.getElementById('login-page').classList.add('hidden');
         document.getElementById('app-page').classList.remove('hidden');
+        document.getElementById('cloud-sync-overlay').classList.remove('hidden');
+        await loadAllFromCloud();
+        document.getElementById('cloud-sync-overlay').classList.add('hidden');
         showToast('Login berhasil!', 'success');
         initApp();
     } else {
